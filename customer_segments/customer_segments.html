@@ -12290,7 +12290,8 @@ kSRJkqRMMxRJkiRJyrT/B1mRPkx99xykAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong><br>
+<p><strong>Answer:</strong> 
+The graph above shows the wholesale customer examples, as well as the mean and standard deviation of the entire set of wholesale customers. This exists to show visually how the examples are different from one another, and different from the mean.<br>
 Example 0, at index 17, could be some small type of grocer. They sell a lot of delicatessen, milk, and fresh items, and hardly   any paper products and detergents.<br>
 Example 1, at index 54, is another type of market where people mainly shop for fresh foods but will occasionally buy other types of items, and very rarely will buy paper and detergents.<br>
 Example 3, at index 159, is probably a type of retailer--people here are usually buying grocery, paper, and detergent items.  They are only occasionally buying milk, and rarely will buy fresh, frozen, or delicatessen items.</p>
@@ -19979,10 +19980,10 @@ CyZJkiRJ6rBgkiRJkqSO/wUmsGpjgOjg6AAAAABJRU5ErkJggg==
 <p><strong>Answer:</strong><br>
 The first and second principal components combined explain 70.68% of the data.<br>
 The first four principal components combined explain 93.11% of the data.<br>
-For example, the first dimension could represent someone buying something for lunch at work--they're not buying paper products, but they are buying fresh and frozen foods.  In other words, there's a large negative emphasis of -0.7514 on paper and detergents, a small positive emphasis of 0.1675 on fresh foods, a small positive emphasis of 0.1782 on frozen foods, a negative emphasis on delicatessen items, a larger negative emphasis on milk and grocery items, and a substantial negative emphasis on detergents and paper items.
-The second dimension could represent someone buying food products in a place that doesn't normally sell them, where the food products are a secondary business. There's a very large negative emphasis on fresh foods, a large negative emphasis on frozen and delicatessen foods, and a slightly smaller negative emphasis on milk, with small negative emphases on grocery and detergents and paper items.<br>
-The third dimension could represent fast food -- they primarily buy delicatessen products, then frozen products, then a tiny amount of milk.  In other words, there's a large positive emphasis on delicatessen products, a positive emphasis on frozen products, and a small positive emphasis on milk.  There is also a very large negative emphasis on fresh foods, a negative emphasis on detergents and paper products, and a small negative emphasis on grocery.<br>
-The fourth dimension could be some kind of bulk-purchase supermarket -- people are stocking up mainly on frozen goods, then paper goods, a bit of grocery and milk, but not likely to get fresh foods and very unlikely to get delicatessen items.  In other words, there's a very large positive emphasis on frozen goods, a positive emphasis on paper and detergents, a small but still positive emphasis on grocery and milk, a negative emphasis on fresh items, and a large negative emphasis on delicatessen items.</p>
+For example, the first dimension shows the difference between the types of customers who do buy detergents and paper products vs those that are buying fresh and frozen foods.  In other words, there's a large negative emphasis of -0.7514 on paper and detergents, a small positive emphasis of 0.1675 on fresh foods, a small positive emphasis of 0.1782 on frozen foods, a negative emphasis on delicatessen items, a larger negative emphasis on milk and grocery items, and a substantial negative emphasis on detergents and paper items.<br>
+The second dimension could separate out customers selling food products in a place that doesn't normally sell them, where the food products are a secondary business. There's a very large negative emphasis on fresh foods, a large negative emphasis on frozen and delicatessen foods, and a slightly smaller negative emphasis on milk, with small negative emphases on grocery and detergents and paper items.<br>
+The third dimension could separate out fast food customers -- that type of customer would primarily buy delicatessen products, then frozen products, then a tiny amount of milk.  In other words, there's a large positive emphasis on delicatessen products, a positive emphasis on frozen products, and a small positive emphasis on milk.  There is also a very large negative emphasis on fresh foods, a negative emphasis on detergents and paper products, and a small negative emphasis on grocery.<br>
+The fourth dimension could be separating out some kind of bulk-purchase supermarket -- where they would sell frozen goods, then paper goods, a bit of grocery and milk versus those likely to get fresh foods and delicatessen items.  In other words, there's a very large positive emphasis on frozen goods, a positive emphasis on paper and detergents, a small but still positive emphasis on grocery and milk, a negative emphasis on fresh items, and a large negative emphasis on delicatessen items.</p>
 
 </div>
 </div>
@@ -21352,11 +21353,14 @@ TkSuQmCC
 Advantages of K-Means clustering algorithms:</p>
 <ul>
 <li>each cluster will have at least one item  </li>
+<li>"quick way to reduce the data set to a relatively small number of representatives for us in exploratory data analysis" <a href="https://shapeofdata.wordpress.com/2013/07/30/k-means/">K-means</a></li>
 </ul>
 <p>Disadvantages of K-Means clustering algorithms:</p>
 <ul>
 <li>K-Means is a hill-climbing algorithm and can vary depending on where the random points begin  </li>
 <li>clusters do not overlap  <a href="http://www.improvedoutcomes.com/docs/WebSiteDocs/Clustering/K-Means_Clustering_Overview.htm">K-Means Clustering Overview</a>  </li>
+<li>because of the non-overlapping nature of clusters, there is a 'hard' line in between clusters. This can cause some hijinks when a point is directly in between two clusters. </li>
+<li>K-Means weighs larger groups stronger than smaller groups, which can cause some issues when data appears slightly more random and noisier in between groups <a href="https://www.r-bloggers.com/k-means-clustering-is-not-a-free-lunch/">K-means clustering is not a free lunch</a></li>
 </ul>
 <p>Advantages of Guassian Mixture Model clustering algorithms:</p>
 <ul>
@@ -21364,12 +21368,14 @@ Advantages of K-Means clustering algorithms:</p>
 <li>does not converge (practically does)</li>
 <li>will not diverge</li>
 <li>works with any distribution that can be solved by an expectation maximization algorithm <a href="http://scikit-learn.org/stable/modules/mixture.html#mixture">Gaussian mixture models</a></li>
+<li>will work well with data that's grouped into differently sized areas</li>
+<li>unlike the K-Means model's hard clustering, Guassian models allow 'soft' clustering and can share points between clusters.</li>
 </ul>
 <p>Disadvantages of Guassian Mixture Model clustering algorithms:</p>
 <ul>
 <li>can get stuck  </li>
 </ul>
-<p>Given the observations about the wholesale customer data so far, I would use the Guassian Mixture Model clustering algorithm as I believe this algorithm will better address the less 'bunchy' nature of the data visible on the PC plane graphed above, as it will be less dependent on the random placement of the first clusters.</p>
+<p>Given the observations about the wholesale customer data so far, I would use the Guassian Mixture Model clustering algorithm. This algorithm will better address the less 'bunchy' nature of the data visible on the PC plane graphed above, as it will be less dependent on the random placement of the first clusters, and the soft clustering employed by the Guassian model will be less sensitive to the natural noise in the data.</p>
 
 </div>
 </div>
